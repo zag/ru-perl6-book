@@ -3,9 +3,6 @@
 SUBDIRS = xml book
 
 all: $(SUBDIRS)
-	@echo Use: gmake \<target\>
-	@echo --------------- Available targets:
-	@echo package  - make connector package
 
 install:
 	for dir in $(SUBDIRS); do \
