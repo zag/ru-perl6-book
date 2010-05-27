@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3CR1//EN"
+        "file:///usr/local/share/xml/docbook/4.5/docbookx.dtd" [
+<!ENTITY bookinfo SYSTEM "bookinfo.xml">
+<!ENTITY spec_rss SYSTEM "../xml/test.xml">
+]>
+<book lang="ru">
+&bookinfo;
+&spec_rss;
+</book>

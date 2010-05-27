@@ -1,0 +1,23 @@
+ru-perl6-book
+===================
+
+Book about perl6.
+
+INSTALLATION
+
+To build this book type the following:
+
+    gmake
+
+DEPENDENCIES
+
+For book creation it is necessary following software:
+    * docbook-4.5
+    * fop-0.95
+    * Perl6-Pod-0.17
+
+Project site: http://zag.ru/perl6-book/
+
+All material in this repository is licensed under a CC-by-nc-sa license:
+<http://creativecommons.org/licenses/by-nc-sa/2.5/> (attribution,
+noncommercial, share-alike), unless explicitly stated otherwise.

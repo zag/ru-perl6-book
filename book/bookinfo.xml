@@ -1,0 +1,28 @@
+<bookinfo>
+        <title>Все о perl6</title>
+        <subtitle>Справочное руководство</subtitle>
+          <pubdate>27.05.2010</pubdate>
+        <author>
+                <firstname>А</firstname>
+                <surname>Загацкий</surname>
+                <affiliation>
+                        <orgname></orgname>
+                        <address><email>zahatski@gmail.com</email> </address>
+                </affiliation>
+        </author>
+        <revhistory>
+               <revision>
+                 <revnumber>v0.1</revnumber>
+                 <date>May 27th 2010</date>
+                 <authorinitials>zag</authorinitials>
+                 <revremark>Начальная версия</revremark>
+                </revision>
+
+        </revhistory>
+
+        <abstract>
+        <para>
+Данная книга являкется сборником статей о perl6        </para>
+        </abstract>
+
+</bookinfo>
