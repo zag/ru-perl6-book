@@ -4,10 +4,7 @@
 FIND= find
 SRCDIR ?=../src
 DOCDIR=$(SRCDIR)
-POD6DOC=perl -I../tools/lib \
-	-I/home/zag/Work/proj/p5-Perl6-Pod-Lib/lib \
-	  -MPerl6::Pod::Lib::Image \
-	 /home/zag/Work/proj/p5-Perl6-Pod/scripts/pod6docbook \
+POD6DOC=pod6docbook \
 	 -use_block Perl6::Pod::Lib::Image=Image
 
 # ****************************************************************
