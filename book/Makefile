@@ -9,11 +9,15 @@ DIR = book
 #FO_XSL= fo.book-stylesheet.xsl
 #include  ../tools/Makefile.base
 
+all:
+	${MAKE} install INSTALL_SUBDIR=../latest_build
+
 include ../tools/Makefile.base-rules
+
+
 
 IMAGES = img
 
-#all: pdf
 
 #IMAGES = img
 #$(FO_TARGET):

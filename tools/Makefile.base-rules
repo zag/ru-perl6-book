@@ -1,7 +1,8 @@
 
-all: img html html-multi-file pdf
+all: img html html-multi-file pdf 
 #all: html html-multi-file pdf
-install:  install-html install-html-arch install-html-chunk install-html-chunk-arc install-pdf
+#install:  install-html install-html-arch install-html-chunk install-html-chunk-arc install-pdf
+install: install-html-arch  install-html-chunk-arc install-pdf
 
 img: 
 	mkdir -p img
@@ -59,7 +60,7 @@ install-html-chunk: $(HTML_CHUNK_TARGET) $(INSTALL_SUBDIR)
 	$(INSTALL_DATA) $(HTML_CHUNK_DIR)/*.html $(INSTALL_SUBDIR)
 	$(INSTALL_DATA) $(STYLESHEET) $(INSTALL_SUBDIR)
 	mkdir -p $(INSTALL_SUBDIR)/img
-	$(INSTALL_DATA) $(IMAGES)/* $(INSTALL_SUBDIR)/img
+	#$(INSTALL_DATA) $(IMAGES)/* $(INSTALL_SUBDIR)/img
 
 install-html-chunk-arc: $(HTML_CHUNK_ARCH_TARGET) $(INSTALL_SUBDIR)
 	$(INSTALL_DATA) $(HTML_CHUNK_ARCH_TARGET) $(INSTALL_SUBDIR)
@@ -69,7 +70,7 @@ install-html: $(HTML_TARGET) $(INSTALL_SUBDIR)
 	$(INSTALL_DATA) $(HTML_TARGET) $(INSTALL_SUBDIR)
 	$(INSTALL_DATA) $(STYLESHEET) $(INSTALL_SUBDIR)
 	mkdir -p $(INSTALL_SUBDIR)/img
-	$(INSTALL_DATA) $(IMAGES)/* $(INSTALL_SUBDIR)/img
+	#$(INSTALL_DATA) $(IMAGES)/* $(INSTALL_SUBDIR)/img
 
 install-html-arch: $(HTML_ARCH_TARGET) $(INSTALL_SUBDIR)
 	$(INSTALL_DATA) $(HTML_ARCH_TARGET) $(INSTALL_SUBDIR)
