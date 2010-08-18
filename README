@@ -18,6 +18,41 @@ For book creation it is necessary following software:
 
 Project site: http://zag.ru/perl6-book/
 
+NOTES FOR AUTHORS
+
+ * Use "Perl 6"
+ * Tables
+
+=for table :caption('Operators')
+ Name     Describtion
+ ------|----------
+ test     My test
+ qwe      qw4 qwe 
+
+ * For code examples use ident:
+  use v6;
+  say "1";
+
+or =code:
+
+=code 
+  use v6;
+  say "1";
+
+or
+
+=for code :lang('perl')
+  use v6;
+  say "1";
+
+or
+
+=begin code
+  use v6;
+  say "1";
+
+=end code
+
 All material in this repository is licensed under a CC-by-nc-sa license:
 <http://creativecommons.org/licenses/by-nc-sa/2.5/> (attribution,
 noncommercial, share-alike), unless explicitly stated otherwise.
