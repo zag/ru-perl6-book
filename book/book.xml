@@ -3,8 +3,10 @@
         "file:///usr/local/share/xml/docbook/4.5/docbookx.dtd" [
 <!ENTITY bookinfo SYSTEM "bookinfo.xml">
 <!ENTITY intro SYSTEM "../xml/Intro.xml">
+<!ENTITY basics SYSTEM "../xml/basics.xml">
 ]>
 <book lang="ru">
 &bookinfo;
 &intro;
+&basics;
 </book>

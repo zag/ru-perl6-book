@@ -9,6 +9,8 @@ install:
 	$(MAKE) -C $$dir $@; \
 	done
 
+book:xml
+
 $(SUBDIRS) :
 	${MAKE} -C $@
 

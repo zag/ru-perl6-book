@@ -1,7 +1,7 @@
 <bookinfo>
         <title>Все о Perl 6</title>
         <subtitle>Справочное руководство</subtitle>
-          <pubdate>18.08.2010</pubdate>
+          <pubdate>06.09.2010</pubdate>
         <author>
                 <firstname>А</firstname>
                 <surname>Загацкий</surname>
@@ -12,23 +12,28 @@
         </author>
         <revhistory>
                <revision>
-                 <revnumber>v0.1</revnumber>
-                 <date>May 27th 2010</date>
+                 <revnumber>v0.3</revnumber>
+                 <date>Sep 5th 2010</date>
                  <authorinitials>zag</authorinitials>
-                 <revremark>Начальная версия</revremark>
+                 <revremark>Базовый синтаксис</revremark>
                 </revision>
                <revision>
                  <revnumber>v0.2</revnumber>
                  <date>Aug 18th 2010</date>
                  <authorinitials>zag</authorinitials>
-                 <revremark>Предисловие.</revremark>
+                 <revremark>Предисловие</revremark>
+                </revision>
+               <revision>
+                 <revnumber>v0.1</revnumber>
+                 <date>May 27th 2010</date>
+                 <authorinitials>zag</authorinitials>
+                 <revremark>Начальная версия</revremark>
                 </revision>
 
         </revhistory>
 
         <abstract>
-        <para>
-Данная книга является сборником статей о perl6.</para>
+        <para>Данная книга является сборником статей о perl6.</para>
         </abstract>
 
 </bookinfo>
