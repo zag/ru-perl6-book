@@ -1,7 +1,7 @@
 <bookinfo>
         <title>Все о Perl 6</title>
         <subtitle>Справочное руководство</subtitle>
-          <pubdate>06.09.2010</pubdate>
+          <pubdate>13.10.2010</pubdate>
         <author>
                 <firstname>А</firstname>
                 <surname>Загацкий</surname>
@@ -11,6 +11,12 @@
                 </affiliation>
         </author>
         <revhistory>
+               <revision>
+                 <revnumber>v0.4</revnumber>
+                 <date>Oct 13th 2010</date>
+                 <authorinitials>zag</authorinitials>
+                 <revremark>Операторы</revremark>
+                </revision>
                <revision>
                  <revnumber>v0.3</revnumber>
                  <date>Sep 5th 2010</date>
