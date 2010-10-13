@@ -33,7 +33,7 @@ X<Операторы|оператор> обеспечивают простой �
  
         Ana         XXXXXXXXXXXXXXXXXXXXXX
         Dave        XXXXXXXXXXXXXXXX
-        Charlie XXXXXXXXXXX
+        Charlie     XXXXXXXXXXX
         Beth        XXXXXXXXXXX
  
 =end output
