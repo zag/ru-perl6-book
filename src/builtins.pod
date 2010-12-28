@@ -1,0 +1,207 @@
+=begin pod
+=NAME Built-in types, operators and methods
+
+X<|type>
+X<|coercion>
+
+Many operators work on a particular I<type> of data. If the type of the
+operands differs from the type of the operand, Perl will make copies of the
+operands and convert them to the needed types.  For example, C<$a + $b> will
+convert a copy of both C<$a> and C<$b> to numbers (unless they are numbers
+already). This implicit conversion is called I<coercion>.
+
+Besides operators, other syntactic elements coerce their elements: C<if> and
+C<while> coerce to truth values (C<Bool>), C<for> views things as lists, and so
+on.
+
+=head1 Numbers
+
+Sometimes coercion is transparent.  Perl 6 has several numeric types which can
+intermix freely--such as subtracting a floating point value from an integer, as
+C<123 - 12.1e1>.
+
+The most important types are:
+
+=begin item :term<Int>
+
+X<|Int>
+X<|types, Int>
+
+C<Int> objects store integer numbers of arbitrary size. If you write a literal
+that consists only of digits, such as C<12>, it is an C<Int>.
+=end item
+
+=begin item :term<Num>
+
+X<|Num>
+X<|types, Num>
+
+C<Num> is the floating point type. It stores sign, mantissa, and exponent, each
+with a fixed width. Calculations involving C<Num> numbers are usually quite
+fast, though subject to limited precision.
+
+Numbers in scientific notation such as C<6.022e23> are of type C<Num>.
+
+=end item
+
+=begin item :term<Rat>
+
+X<|Rat>
+X<|rational type>
+X<|types, rational>
+X<|types, Rat>
+
+C<Rat>, short for I<rational>, stores fractional numbers without loss of
+precision.  It does so by tracking its numerator and denominator as integers,
+so mathematical operations on C<Rat>s with large components can become quite
+slow.  For this reason, rationals with large denominators automatically degrade
+to C<Num>.
+
+Writing a fractional value with a dot as the decimal separator, such as
+C<3.14>, produces a C<Rat>.
+
+=end item
+
+=begin item :term<Complex>
+
+X<|Complex>
+X<|types, Complex>
+
+C<Complex> numbers have two parts: a real part and an imaginary part. If either
+part is C<NaN>, then the entire number may possibly be C<NaN>.
+
+Numbers in the form C<a + bi>, where C<bi> is the imaginary component, are of
+type C<Complex>.
+
+=end item
+
+The following operators are available for all number types:
+
+=begin table :caption('Binary numeric operators')
+   Operator      Description
+ ----------|--------------
+ C<**>          Exponentiation: C<$a**$b> is C<$a> to the power of C<$b>
+ C<*>           multiplication
+ C</>           division
+ C<div>         integer division
+ C<+>           addition
+ C<->           subtraction
+=end table
+
+=begin table :caption('Unary numeric operators')
+   Operator      Description
+ ----------|--------------
+  C<+>        conversion to number
+  C<->         negation
+=end table
+
+Most mathematical functions are available both as methods and functions, so
+you can write both C<(-5).abs> and C<abs(-5)>.
+
+=begin table :caption('Mathematical functions and methods')
+    Method      Description
+ ----------|--------------
+ C<abs>      absolute value
+ C<sqrt>     square root
+ C<log>      natural logarithm
+ C<log10>    logarithm to base 10
+ C<ceil>     rounding up to an integer
+ C<floor>    rounding down to an integer
+ C<round>    rounding to next integer
+ C<sign>     -1 for negative, 0 for zero, 1 for positive values
+=end table
+
+X<|trigonometric functions>
+X<|operators, trigonometry>
+X<|units>
+
+The trigonometric functions C<sin>, C<cos>, C<tan>, C<asin>, C<acos>, C<atan>,
+C<sec>, C<cosec>, C<cotan>, C<asec>, C<acosec>, C<acotan>, C<sinh>, C<cosh>,
+C<tanh>, C<asinh>, C<acosh>, C<atanh>, C<sech>, C<cosech>, C<cotanh>, C<asech>,
+C<acosech> and C<acotanh> work in units of radians by default. You may specify
+the unit with an argument of C<Degrees>, C<Gradians> or C<Circles>. For
+example, C<180.sin(Degrees)> is approximately C<0>.
+
+=head1 Strings
+
+X<|strings>
+X<|Str>
+X<|types, Str>
+X<|Buf>
+X<|types, Buf>
+
+Strings stored as C<Str> are sequences of characters, independent of character
+encoding. The C<Buf> type is available for storing binary data. The C<encode>
+method converts a C<Str> to C<Buf>. C<decode> goes the other direction.
+
+The following operations are available for strings:
+
+=begin table :caption('Binary string operators')
+  Operator      Description
+ ----------|--------------
+ C<~>        concatenation: C<'a' ~ 'b'> is C<'ab'>
+ C<x>        replication: C<'a' x 2> is C<'aa'>
+=end table
+
+
+=begin table :caption('Unary string operators')
+  Operator      Description
+ ----------|--------------
+ C<~>           conversion to string: C<~1> becomes C<'1'>
+=end table
+
+=begin table :caption('String methods/functions')
+Method/function     Description
+ ----------------------------|--------------
+ C<.chomp>                      remove trailing newline
+ C<.substr($start, $length)>    extract a part of the string. C<$length> defaults to the rest of the string
+ C<.chars>                      number of characters in the string
+ C<.uc>                         upper case
+ C<.lc>                         lower case
+ C<.ucfirst>                    convert first character to upper case
+ C<.lcfirst>                    convert first character to lower case
+ C<.capitalize>            convert the first character of each word to upper case, and all other characters to lower case
+=end table
+
+
+=head1 Bool
+
+X<|Bool>
+X<|types, Bool>
+
+A Boolean value is either C<True> or C<False>.  Any value can coerce to a
+boolean in boolean context. The rules for deciding if a value is true or false
+depend on the type of the value:
+
+=for item Strings
+Empty strings and C<"0"> evaluate to C<False>.  All other strings evaluate to
+C<True>.
+
+=for item Numbers
+All numbers except zero evaluate to C<True>.
+
+=for item Lists and Hashes
+Container types such as lists and hashes evaluate to C<False> if they are
+empty, and to C<True> if they contain at least one value.
+
+
+Constructs such as C<if> automatically evaluate their conditions in
+boolean context. You can force an explicit boolean context by
+putting a C<?> in front of an expression. The C<!> prefix negates
+the boolean value.
+
+=begin code
+
+    my $num = 5;
+
+    # implicit boolean context
+    if $num { say "True" }
+
+    # explicit boolean context
+    my $bool    = ?$num;
+
+    # negated boolean context
+    my $not_num = !$num;
+
+=end code
+=end pod
