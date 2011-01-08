@@ -33,7 +33,7 @@ POD2DOC= $(TOOLS_DIR)/podToDocbook.pl
 XSL_DIR = $(TOOLS_DIR)
 FILE = book
 XSLTPROC = /usr/local/bin/xsltproc
-FOP = /usr/local/bin/fop
+FOP = env JAVA_HOME=/usr/local/openjdk6 /usr/local/bin/fop
 MKDIR= mkdir -p
 INSTALL_DATA = cp -R
 
