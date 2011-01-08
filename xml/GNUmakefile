@@ -29,7 +29,11 @@ all: $(XML_TARGETS)
 
 $(XML_TARGETS):
 	@echo TARGET BASE: ${BASE} ${ORIG}
-	$(POD6DOC) ${ORIG} > $@ 
+	$(POD6DOC)  ${ORIG} > $@ 
+
+book_preface.xml:
+	@echo TARGET BASE: ${BASE} ${ORIG}
+	$(POD6DOC) -doctype preface ${ORIG} > $@ 
 
 clean: 
 	$(RM)  *.xml
