@@ -1,14 +1,15 @@
 
 TRANSLATE STATUS
 
-
+ book_preface.pod (zag)
+ 
 1. preface.pod + (zag)
 
 2. basics.pod + (zag)
 
 3. operators.pod + (zag)
 
-4. subs-n-sigs.pod - (zag)
+4. subs-n-sigs.pod + (zag)
 
 5. classes-and-objects.pod - ()
 

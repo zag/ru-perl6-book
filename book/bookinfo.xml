@@ -1,16 +1,36 @@
 <bookinfo>
         <title>Все о Perl 6</title>
         <subtitle>Справочное руководство</subtitle>
-          <pubdate>13.10.2010</pubdate>
+          <pubdate>08.01.2011</pubdate>
         <author>
-                <firstname>А</firstname>
-                <surname>Загацкий</surname>
-                <affiliation>
-                        <orgname></orgname>
-                        <address><email>me(at)zag.ru</email> </address>
-                </affiliation>
+                <firstname>Джонатан</firstname>
+                <surname>Вортингтон</surname>
         </author>
+        <author>
+                <firstname>Патрик</firstname>
+                <surname>Мишо</surname>
+        </author>
+        <author>
+                <firstname>Карл</firstname>
+                <surname>Мэсак</surname>
+        </author>
+        <author>
+                <firstname>Мориц</firstname>
+                <surname>Ленц</surname>
+        </author>
+        <author>
+                <firstname>Скот</firstname>
+                <lineage>Джонатан</lineage>
+                <surname>Даф</surname>
+        </author>
+         
         <revhistory>
+               <revision>
+                 <revnumber>v0.5</revnumber>
+                 <date>Jan 08th 2011</date>
+                 <authorinitials>zag</authorinitials>
+                 <revremark>Подпрограммы и сигнатуры</revremark>
+                </revision>
                <revision>
                  <revnumber>v0.4</revnumber>
                  <date>Oct 13th 2010</date>
@@ -39,7 +59,7 @@
         </revhistory>
 
         <abstract>
-        <para>Данная книга является сборником статей о perl6.</para>
+        <para>Данная книга является сборником статей о Perl 6.</para>
         </abstract>
 
 </bookinfo>

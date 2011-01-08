@@ -2,6 +2,7 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3CR1//EN"
         "file:///usr/local/share/xml/docbook/4.5/docbookx.dtd" [
 <!ENTITY bookinfo SYSTEM "bookinfo.xml">
+<!ENTITY book_preface SYSTEM "../xml/book_preface.xml">
 <!ENTITY intro SYSTEM "../xml/preface.xml">
 <!ENTITY basics SYSTEM "../xml/basics.xml">
 <!ENTITY operators SYSTEM "../xml/operators.xml">
@@ -16,6 +17,7 @@
 ]>
 <book lang="ru">
 &bookinfo;
+&book_preface;
 &intro;
 &basics;
 &operators;
