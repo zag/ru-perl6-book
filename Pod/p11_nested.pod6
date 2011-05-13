@@ -1,0 +1,49 @@
+=begin pod
+=head1 Вложенность блоков
+
+=Image img/matroshki.jpg
+
+Уровень вложенности в Pod - одна из составляющих его объектной модели документа. Вложенность блоков зачастую отмечается дополнительными отступами, но возможны и другие способы отображения: рамками, элементами сворачивания. 
+
+Любой блок может быть вложенным I<(nested)>.  Для этого достаточно указать атрибут блока C<:nested>:
+
+    =begin para :nested
+        We are all of us in the gutter,
+        but some of us are looking at the stars!
+    =end para
+
+Однако, указание атрибута вложенности для каждого блока быстро становится утомительным занятием, если таких блоков несколько или требуется несколько уровней вложенности:
+
+    =begin para :nested
+        We are all of us in the gutter,
+        but some of us are looking at the stars!
+    =end para
+    =begin para :nested(2)
+            -- Oscar Wilde
+    =end para
+
+Формат Pod предоставляет блок C<=nested>, который означает, что все его содержимое должно быть вложенным:
+
+    =begin nested
+    We are all of us in the gutter,
+    but some of us are looking at the stars!
+        =begin nested
+        -- Oscar Wilde
+        =end nested
+    =end nested
+
+Блоки вложенности C<=nested> могут содержать любое количество блоков, включая неявные параграфы и блоки кода. Следует отметить, что физические отступы блоков не играют роли при определении их уровня вложенности. Предидущий пример может быть переписан с учетом этого следующим образом:
+
+    =begin nested
+    We are all of us in the gutter,
+    but some of us are looking at the stars!
+    =begin nested
+    -- Oscar Wilde
+    =end nested
+    =end nested
+
+
+=end pod
+
+
+

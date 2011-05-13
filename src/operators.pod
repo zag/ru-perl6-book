@@ -1,6 +1,6 @@
 =begin pod
 
-=NAME Операторы
+=CHAPTER Операторы
 
 =config C<> :allow<E>
 X<|оператор>

@@ -1,0 +1,58 @@
+=begin pod
+=head1 Код форматирования Z - комментарии
+
+=for Image :align("left") :preview
+img/comment.jpg
+
+Код форматирования C<Z<>> означает, что его содержимое является B<комментарием нулевой длины> и U<не> отображается. Например:
+
+=begin code :allow<B>
+    The "exeunt" command B<Z<Think about renaming this command?>> is used
+    to quit all applications.
+=end code
+
+В формате Perl 5 POD код C<Z<>> широко использовался для разбиения последовательности кодов разметки на составные части, чтобы избежать их интерпретации:
+
+=begin code :allow<B>
+    In Perl 5 POD, the ZB<Z<>><> code was widely used to break up text
+    that would otherwise be considered mark-up.
+=end code
+
+Данный прием продолжает работать, однако, достичь результата сейчас легче благодаря "дословному" I<(verbatim)> коду форматирования:
+
+=begin code :allow<B>
+    In Perl 5 POD, the B< V<Z<>> > code was widely used to break up text
+    that would otherwise be considered mark-up.
+=end code
+
+Кроме того C<C<>> также обрабатывает свое содержимое как "дословный" текст,
+что позволяет исключить необходимость в коде C<V<>>:
+
+=begin code :allow<B>
+    In Perl 5 POD, the B<C<Z<>>> code was widely used to break up text
+    that would otherwise be considered mark-up.
+=end code
+
+Код форматирования C<Z<>> является эквивалентом блока C<=comment>. 
+
+=head2 Комментарии как метки категорий
+
+Большинство средств обработки Pod предоставляют механизм, позволяющий 
+явно подключать или исключать отдельные блоки документации, если они 
+соответствуют определенному критерию. Например, модуль экспорта 
+документации I<(renderer)> может быть проинформирован пропускать 
+любой блок содержащий шаблон C</CONFIDENTIAL/> I<('КОНФИДЕЦИАЛЬНО')>.
+Подобный "невидимый маркер", может быть помещен внутри комментария C<Z<>> 
+в любом блоке и будет пропущен при обычной обработке. Например:
+
+=for code :allow<B>
+    class Widget is Bauble
+    {
+        has $.things; #= a collection of other stuff
+        #={ Z<CONFIDENTIAL>
+            This variable needs to be replaced for political reasons
+        }
+    }
+
+=end pod
+

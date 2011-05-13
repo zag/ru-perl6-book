@@ -1,0 +1,45 @@
+=begin pod
+=head1 Семантические блоки
+
+=Image semantic.png
+
+Все блоки, имена которых состоят только из заглавных букв, зарегистрированы для стандартной документации, издательства и документирования программного кода. Так например, все стандартные компоненты  документации по Perl или используемые в man страницах имеют зарезервированные аналоги имен в верхнем регистре.
+
+Стандартные семантические блоки:
+
+    =NAME
+    =VERSION
+    =SYNOPSIS
+    =DESCRIPTION
+    =USAGE
+    =INTERFACE 
+    =METHOD
+    =SUBROUTINE
+    =OPTION
+    =DIAGNOSTIC
+    =ERROR
+    =WARNING
+    =DEPENDENCY
+    =BUG
+    =SEEALSO
+    =ACKNOWLEDGEMENT
+    =AUTHOR
+    =COPYRIGHT
+    =DISCLAIMER 
+    =LICENCE
+    =LICENSE
+    =TITLE
+    =SECTION
+    =CHAPTER
+    =APPENDIX
+    =TOC
+    =INDEX
+    =FOREWORD
+    =SUMMARY
+
+Для указанных имен зарегистрированы соответствующие  имена  во множественном числе.
+
+В модели документа данные блоки представлены заголовками первого уровня.
+
+=end pod
+

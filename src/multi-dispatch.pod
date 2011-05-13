@@ -1,5 +1,5 @@
 =begin pod
-=NAME Multis
+=CHAPTER Multis
 
 X<|multidispatch>
 X<|multis>

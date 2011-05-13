@@ -1,0 +1,147 @@
+=begin pod 
+=head1 Блоки Pod
+
+Основной структурной единицей нового диалекта L<Pod|http://perlcabal.org/syn/S26.html> является L<блок документации|doc:dc5f6be4deb411de9f49a464fa0cbd7f>. Он может быть представлен в виде 3 равнозначных форм: 
+
+=item Разграниченные блоки / Delimited blocks
+=item Блоки-параграфы / Paragraph blocks
+=item Сокращенные блоки / Abbreviated blocks
+=item Блоки-деклараторы / Declarator blocks
+
+
+=head2 Разграниченные блоки / Delimited blocks
+
+Разграниченные блоки имеют явно определенные границы. Для этого используются директивы I<=begin> и I<=end>, за каждой из которых следует имя типа блока (I<typename>). Имена состоят из букв, цифр и символов подчеркивания, а начинаются с буквы или знака подчеркивания. Имена, состоящие целиком из символов нижнего (I<=begin head1>) и верхнего I<=begin SYNOPSIS> регистра, зарезервированы.
+
+В строке с директивой I<=begin> после имени блока следует I<конфигурация данного блока>. Среди особенностей нового диалекта Pod - эта одна из самых замечательных. Конфигурация блока может использоваться в различных целях, в том числе и при создании I<расширений для Pod>.
+
+Конфигурационные параметры блока представлены в виде парной нотации в стиле Perl6 ( L<SYNOPSIS 02|http://perlcabal.org/syn/S02.html> ).
+
+=for table  :caption('Парная нотация конфигурации блоков Pod')
+      значение      формат определения   также...   также ..(*)
+     ==============+===================+================+==============
+      Boolean(true)     :key             :key(1)            key=>1
+      Boolean(false)    :!key            :key(0)            key=>0
+      String            :key<str>        :key('str')        key=>'str'
+      List              :key<1 2 3>      :key[1,2,3 ]       key=>[1,2,3]
+      Hash              :key{a=>1, b=>2}  -                 key=>{a=>1, b=>2}
+
+(*) - последняя форма не поддерживается в реализации L<Perl6::Pod|http://search.cpan.org/dist/Perl6-Pod/>.
+
+Если параметры блока не помещаются в одну строку, конфигурационный блок можно продолжить со следующей. В этом случае в начале строки ставиться символ I<=> и пробел, далее конфигурационные параметры продолжаются.
+
+Между директивами I<=begin> и  I<=end> располагается I<содержимое блока>. Сроки внутри блока могут содержать отступы, но  они интерпретируются как блоки кода только в блоках I<=pod>, I<=item>  I<=code>  и B<семантических блоках> (например: I<=METHOD>). То есть содержимое блока I<=para>  может отстоять от начала строки и не интерпретироваться при этом как код ( verbitim paragraph в Perl5 POD).
+
+Синтаксис блока выглядит следующим образом:
+
+  =begin BLOCK_TYPE  OPTIONAL CONFIG INFO
+  =                  OPTIONAL EXTRA CONFIG INFO
+  BLOCK CONTENTS
+  =end BLOCK_TYPE
+
+Например:
+
+    =begin table  :caption<Table of Contents>
+        Constants           1
+        Variables           10
+        Subroutines         33
+        Everything else     57
+    =end table
+
+    =begin Name  :required
+    =            :width(50)
+    The applicant's full name
+    =end Name
+
+    =begin Contact  :optional
+    The applicant's contact details
+    =end Contact
+
+Пустые строки между директивами, как это было в Perl5 POD не нужны; если они есть - то интерпретируются как часть содержимого блока. Кстати "пустыми" в Pod считаются также строки, содержащие только пробелы!
+
+=head2 Блоки-параграфы / Paragraph blocks
+
+Блоки параграфы начинаются с директивы I<=for> и завершаются следующий директивой или пустой строкой ( она не считается частью блока ). После директивы I<=for> следует имя блока и необязательные конфигурационные параметры.
+
+Синтаксис этого типа блоков следующий:
+
+    =for BLOCK_TYPE  OPTIONAL CONFIG INFO
+    =                OPTIONAL EXTRA CONFIG INFO
+    BLOCK DATA
+
+Примеры:
+
+    =for table  :caption<Table of Contents>
+        Constants           1
+        Variables           10
+        Subroutines         33
+        Everything else     57
+
+    =for Name  :required
+    =          :width(50)
+    The applicant's full name
+
+    =for Contact  :optional   
+    The applicant's contact details
+
+=head2 Сокращенные блоки / Abbreviated blocks
+
+Сокращенные блоки начинаются с символа I<=> за которым неразрывно  следует имя блока. Продолжение строки интерпретируется как содержимое блока. Конфигурационных параметров в этой форме блока нет. Блок заканчивается перед следующей директивой Pod или пустой строкой ( которая не ситается частью данных блока).
+
+Синтаксис блока следующий:
+
+    =BLOCK_TYPE  BLOCK DATA
+    MORE BLOCK DATA
+
+Пример:
+
+    =table
+        Constants           1
+        Variables           10
+        Subroutines         33
+        Everything else     57
+
+    =Name     The applicant's full name
+    =Contact  The applicant's contact details
+
+Этот тип блока подходит для случаев, когда можно обойтись без конфигурирования блока.
+Иначе придется воспользоваться I<=for> или I<=begin/=end> директивами.
+
+=head2 Блоки-деклараторы / Declarator blocks
+
+Блоки-деклараторы особый тип блоков, который встроен в комментарии:
+=for code :lang<perl>
+ my $declared_thing;   #= Pod here until end of line
+ sub declared_thing () {   #=[ Pod here
+                              until matching
+                               closing bracket
+                             ]
+         ...
+  }
+
+
+=head2 Равнозначность стилевых блоков
+
+Описанные выше типы блоков одинаково представлены во внутренней структуре документа. То есть если имя типа блока  - параграф (I<=para>), то он остается параграфом независимо от формы его описания.
+
+Практически это означает, что приведенные ниже блоки:
+
+ =begin para
+ Text
+ =end para
+
+ =for para text
+
+ =para text
+
+при конвертации в html будут преобразованы в один и тот же текст:
+
+    <p>text</p>
+
+
+Если тип блока таблица, то она  останется  ею в любом случае.
+
+=for Image :caption('Три формы блока')
+3block_datapng.png
+
+=end pod

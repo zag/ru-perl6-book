@@ -1,7 +1,7 @@
 =begin pod
 =config C<> :allow<E>
 
-=NAME Pattern matching
+=CHAPTER Pattern matching
 
 X<|regular expressions>
 X<|regex>

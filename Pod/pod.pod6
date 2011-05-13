@@ -1,0 +1,64 @@
+=begin pod
+=CHAPTER Формат Pod
+
+Широко известный формат ведения документации в perl5 - POD
+(Plain Old Documentation) совсем недавно отпраздновал 15 лет.
+Вместе с новой версией perl6 готовится новый формат : Pod.
+Чем отличается perl 5 POD от Perl 6 Pod ?
+
+Немного исторических дат, связанных с обоими форматами:
+
+
+=defn 18 октября 1994
+В списке анонса perl 5.000 присутвует поддержка POD
+=code
+18 October 1994:
+It was a complete rewrite of Perl. 
+A few of the features and pitfalls are: 
+ ...
+  * The documentation is much more extensive 
+    and perldoc along with pod is introduced.
+  ..
+=defn 9 апреля 2005
+S26: cпецификация формата Pod для perl6. Автор - L<Damian Conway|http://en.wikipedia.org/wiki/Damian_Conway>.
+
+=defn 25 Apr 2007
+Первая редакция формата.
+
+=defn August 16, 2009
+S26 - The Next Generation ( L<preview|http://www.nntp.perl.org/group/perl.perl6.language/2009/08/msg32352.html>).
+
+=defn 31 Jul 2010
+Последняя редакция. Появились декларативные блоки.
+
+В то время как существующий ныне B<POD> означает Perl Old Documentation,
+cпецификация s26 представляет новый формат следующим образом:
+
+=for nested  :formatted<I>
+B<Pod> - является эволюцией POD. В сравнении с POD, Perl 6 Pod более  однороден, компактен и выразительнее. Pod также характеризуется описательной нотацией разметки, чем презентационной.
+
+Таким образом B<Pod> избавился от слова "старый".
+
+=Include p01_struct.pod6
+=Include p02_bloks.pod6
+=Include p03_conf.pod6
+=comment
+# =Include p04_ext.pod6
+=Include p11_nested.pod6
+=Include p12_lists.pod6
+=Include p10_pseud.pod6
+
+=Include p13_levels.pod6
+=Include p06_iobloks.pod6
+=Include p07_fcodeX.pod6
+=Include p08_fcodeE.pod6
+=Include p09_fcodeN.pod6
+=Include p14_fcodeD.pod6
+=Include p15_fcodeZ.pod6
+=Include p16_fcodeS.pod6
+=Include p05_semantic.pod6
+=Include p17_fcode_codspec.pod6
+
+
+
+=end pod

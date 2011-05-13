@@ -1,5 +1,5 @@
 =begin pod 
-=NAME Subtypes
+=CHAPTER Subtypes
 
 Z<subtypes>
 

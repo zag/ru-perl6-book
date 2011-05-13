@@ -1,0 +1,62 @@
+=begin pod
+=head1 Код форматирования E - определение сущностей 
+
+Для вставки в Pod документ кодовой точки I<(code point)> Unicode или ссылки на HTML5 символ, укажите необходимую сущность I<(entity)>, используя код форматирования C<E<>>. 
+
+Если  C<E<>> содержит число, оно интерпретируется как десятичное значение требуемой Unicode кодовой точки. Например:
+
+  Perl 6 makes considerable use of E<171> and E<187>.
+
+Можно также использовать явно двоичные, восьмеричные, десятичные и шестнадцатеричные числа (используя нотацию Perl 6 для указания формата представления):
+
+    Perl 6 makes considerable use of E<0b10101011> and E<0b10111011>.
+    Perl 6 makes considerable use of E<0o253> and E<0o273>.
+    Perl 6 makes considerable use of E<0d171> and E<0d187>.
+    Perl 6 makes considerable use of E<0xAB> and E<0xBB>. 
+
+
+Если содержимое C<E<>> отлично от числа, оно интерпретируется как имя символа Unicode ( которое всегда в верхнем регистре ) или именованная ссылка на символ HTML5. Например:
+
+   Perl 6 makes considerable use of E<LEFT DOUBLE ANGLE BRACKET>
+    and E<RIGHT DOUBLE ANGLE BRACKET>.
+
+что эквивалентно:
+
+    Perl 6 makes considerable use of E<laquo> and E<raquo>.
+
+Множество последовательно расположенных сущностей ( в любом формате представления) могут быть указаны в одном коде C<E<>>, разделенных точкой с запятой:
+
+ Perl 6 makes considerable use of E<LEFT DOUBLE ANGLE BRACKET;hellip;0xBB>.
+
+=head2 Примеры
+
+=begin item
+Get E<0x02328> I<(keyboard)> and type E<0x0080> I<(Euro)>.
+
+=code
+Get E<0x02328> I<(keyboard)> and type E<0x0080> I<(Euro)>.
+
+=end item
+
+=begin item
+Do : E<0x02460>,E<0x02461>,E<0x02462>,E<0x02463>,E<0x02464>.
+=code
+Do : E<0x02460>,E<0x02461>,E<0x02462>,E<0x02463>,E<0x02464>.
+
+=end item
+=begin item
+Snow : E<0x2744> E<0x2745> E<0x2746>
+
+=code
+Snow : E<0x2744> E<0x2745> E<0x2746>
+
+=end item
+
+В качестве источника я использовал следующие L<таблицы Unicode|http://www.tamasoft.co.jp/en/general-info/unicode.html>. 
+
+=for Image :align("right")
+img/unicode.jpg
+
+=end pod
+
+

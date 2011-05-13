@@ -1,0 +1,33 @@
+=begin pod
+=head1  Код форматирования N - примечания
+
+=for Image
+img/footnote.jpg
+
+Содержимое кода C<N<>> является встроенным B<примечанием>.
+Например:
+
+=begin code :allow<B>   
+    Use a C<for> loop instead.B<N<The Perl 6 C<for> loop is far more
+    powerful than its Perl 5 predecessor.>> Preferably with an explicit
+    iterator variable.
+=end code
+
+Трансляторы Pod N<Трансляторы Pod - программы, преобразующие документы Pod в различные форматы. Например: I<pod6xml>.> могут отображать содержимое примечаний разными способами: как сноски, как пояснения в конце книги или главы, как боковые панели с текстом, как всплывающие окна или подсказки, как разворачивающиеся элементы, и т.д. Однако они никогда не отображаются обычным текстом. Таким образом, предыдущий пример может быть отображен как:
+
+=begin code :allow<C B E>
+Use a C<for> loop instead.E<dagger> Preferably with an explicit iterator
+variable.
+=end code
+
+и далее:
+
+=begin code :allow<B E C>
+B<Footnotes>
+E<dagger> The Perl 6 C<for> loop is far more powerful than its Perl 5
+predecessor.
+
+=end code
+
+=end pod
+

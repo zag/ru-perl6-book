@@ -1,0 +1,67 @@
+=begin pod
+=begin BOOKINFO
+*TITLE Все о Perl 6
+*SUBTITLE Справочное руководство
+*AUTHOR
+firstname:Джонатан
+surname:Вортингтон
+
+*AUTHOR
+firstname:Патрик
+surname:Мишо
+
+*AUTHOR
+firstname: Карл
+surname:Мэсак
+
+*AUTHOR
+firstname:Мориц
+surname:Ленц
+
+*AUTHOR
+firstname:Скот
+lineage:Джонатан
+surname:Даф
+
+*DESCRIPTION
+Данная книга является сборником статей о Perl 6.
+*CHANGES
+May 13th 2011(v0.6)[zag]   Формат Pod
+
+Jan 08th 2011(v0.5)[zag]   Подпрограммы и сигнатуры
+
+Oct 13th 2010(v0.4)[zag]   Операторы
+
+Sep 5th 2010(v0.3)[zag]   Базовый синтаксис
+
+Aug 18th 2010(v0.2)[zag]   Предисловие
+
+May 27th 2010(v0.1)[zag]   Начальная версия
+
+=end BOOKINFO
+
+=config C<> :allow<E>
+=config code :allow<E>
+
+=Include src/book_preface.pod
+
+=Include src/preface.pod
+=Include src/basics.pod
+=Include src/operators.pod
+=Include src/subs-n-sigs.pod
+
+=Include src/classes-and-objects.pod
+
+=Include src/multi-dispatch.pod
+=Include src/roles.pod
+=Include src/subtypes.pod
+=Include src/regexes.pod
+=Include src/grammars.pod
+=Include src/builtins.pod
+
+=comment
+Perl 6 Pod chapters from blog http://zag.ru
+=Include Pod/pod.pod6
+
+
+=end pod

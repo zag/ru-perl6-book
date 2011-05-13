@@ -1,5 +1,5 @@
 =begin pod
-=NAME Built-in types, operators and methods
+=CHAPTER Built-in types, operators and methods
 
 X<|type>
 X<|coercion>

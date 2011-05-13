@@ -1,0 +1,137 @@
+=begin pod
+=head1 Псевдонимы
+
+С помощью директивы C<=aliases> можно определить ограниченный лексической областью видимости псевдоним для: части Pod текста, определения (мета) объекта в коде или даже  куска программного кода. Данные псевдонимы используются в тексте Pod благодаря коду форматирования C<A<>>. 
+
+Директива C<=alias> является такой же фундаментальной, как C<=begin> или C<=for>. Она не может быть представлена в виде разграниченного I<(delimited)> или параграфного I<(paragraph)> блока.
+
+Существует два вида псевдонимов: псевдонимы для макросов и контекстуальные I<(contextual)> псевдонимы. Для обоих этих видов существует лексическая область видимости, ограниченная текущим Pod блоком. 
+
+=head2
+Псевдонимы для макросов
+
+Данная форма определения псевдонима наиболее простая: требуются только два аргумента. Первый - идентификатор, который обычно состоит из символов в верхнем регистре (I< хотя данное условие необязательно >). Следующий аргумент состоит из одной или нескольких строк текста для подстановки.
+
+В результате создается макрос Perl 6 с лексической областью видимости, который может быть вызван в процессе обработки документации. Для этого идентификатор макроса помещается в код форматирования C<A<>>. В результате код форматирования заменяется на результат вызова макроса,а проще говоря, на текст, указанный при определении псевдонима.
+
+Замещаемый текст начинается с первого непробельного (non-whitespace) символа, следующего за идентификатором псевдонима и продолжается до конца строки. Возможно определение замещаемого текста  виде нескольких строк. Для этого в начале каждой следующей замещаемой строки ставиться знак C<=> (I<с тем же отступом от начала строки как и C<=alias>>) и затем по крайней мере один пробел. Каждая из дополнительный строк использует отступ слева такой же как и первая строка ( с директивой C<=alias>) замещаемого текста.
+
+Например, для текста:
+
+=begin code
+    =alias PROGNAME    Earl Irradiatem Evermore
+    =alias VENDOR      4D Kingdoms
+    =alias TERMS_URLS  =item L<http://www.4dk.com/eie>
+    =                  =item L<http://www.4dk.co.uk/eie.io/>
+    =                  =item L<http://www.fordecay.ch/canttouchthis>
+
+    The use of A<PROGNAME> is subject to the terms and conditions
+    laid out by A<VENDOR>, as specified at:
+
+        A<TERMS_URL>
+
+=end code
+
+
+будет получен следующий результат:
+
+
+    The use of Earl Irradiatem Evermore is subject to the terms and
+    conditions laid out by 4D Kingdoms Inc, as specified at:
+     
+        =item L<http://www.4dk.com/eie>
+        =item L<http://www.4dk.co.uk/eie.io/>
+        =item L<http://www.fordecay.ch/canttouchthis>
+
+Преимущества использования псевдонимов очевидны. Они могут быть использованы многократно в документации и достаточно отредактировать текст в определении псевдонима, чтобы эти изменения стали актуальными во всех частях документа.
+
+=begin code
+    =alias PROGNAME    Count Krunchem Constantly
+    =alias VENDOR      Last Chance Receivers Intl
+    =alias TERMS_URLS  L<http://www.c11.com/generic_conditions>
+=end code
+
+=head2 Контекстуальные псевдонимы
+
+Если директива C<=alias> указана только с одним аргументом ( идентификатором ),то создается контекстуальный псевдоним. В данной форме за директивой C<=alias> должен следовать программный код Perl 6 ( а не Pod блок ).
+
+Единственный аргумент директивы используется в качестве имени псевдонима и следующая за ним часть программного кода Perl 6 сохраняется в качестве замещаемого текста (как результат вызова макроса).
+
+Программный код, следующий за C<=alias>, является исполняемым реальным кодом программы. Парсер Perl 6 позволяет использовать эту часть кода в качестве замещаемого текста для псевдонима. Таким образом разработчик может цитировать в документации необходимую часть программного кода без копирования.
+
+Если код программы, следующий за одноаргументной формой директивы C<=alias>, представляет собой блок кода, ограниченный скобками, то качестве текста для подстановки используется содержимое блока I<без> скобок.
+
+Например, для следующего кода :
+
+=begin code
+
+    # This is actual code...
+
+    sub hash_function ($key)
+    =alias HASHCODE
+    {
+        my $hash = 0;
+        for $key.split("") -> $char {
+            $hash = $hash*33 + $char.ord;
+        }
+        return $hash;
+    }
+
+    =begin pod
+    An ancient (but fast) hashing algorithm is used:
+
+        =begin code :allow<A>
+        A<HASHCODE>
+        =end code
+
+    =end pod
+=end code
+
+Результат будет следующим:
+
+=begin code
+ An ancient (but fast) hashing algorithm is used:
+
+    my $hash = 0;
+    for $key.split("") -> $char {
+        $hash *= 33;
+        $hash += $char.ord;
+    }
+    return $hash;
+=end code
+
+Если за директивой C<=alias> I<не> следует открывающая скобки, то ожидается декларатор ( например: C<my>, C<class>, C<sub> и т.д.). Определенный с помощью одного из деклараторов объект становиться значением (raead-only) псевдонима. 
+Например:
+
+=begin code :allow<B>
+    B<=alias CLASSNAME>
+    class Database::Handle {
+        B<=alias ATTR>
+        has IO $!handle;
+
+        B<=alias OPEN>
+        my Bool method open ($filename?) {...}
+
+        B<=alias DEFNAME>
+        constant Str DEFAULT_FILENAME = 'db.log';
+
+        =for para
+            Note that the B<A<OPEN.name>> method of class B<A<CLASSNAME>>
+            stores the resulting low-level database handle
+            in its private B<A<ATTR.name>> attribute. By default,
+            handles are opened to the file "B<A<DEFNAME>>".
+
+    }
+=end code
+
+Результат :
+
+=for para :nested
+Note that the C<open> method of class C<Database::Handle> stores the
+resulting low-level database handle in its private C<$!handle>
+attribute. By default, handles are opened to the file "C<db.log>".
+
+=end pod
+
+
+

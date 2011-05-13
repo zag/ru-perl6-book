@@ -1,5 +1,5 @@
 =begin pod
-=NAME Grammars
+=CHAPTER Grammars
 
 Grammars organize regexes, just like classes organize methods. The following
 example demonstrates how to parse JSON, a data exchange format already

@@ -1,0 +1,358 @@
+=begin pod
+=head1 Списки
+
+=for Image 
+img/lists.jpg
+
+Списки в Pod представлены в виде групп, следующих друг за другом блоков C<=item>. Каких либо специальных директив-"контейнеров" или разделителей для определения границ списков нет. Например:
+
+=begin code 
+     The seven suspects are:
+
+     =item  Happy
+     =item  Dopey
+     =item  Sleepy
+     =item  Bashful
+     =item  Sneezy
+     =item  Grumpy
+     =item  Keyser Soze
+=end code
+
+Элементы списка имеют неявный уровень вложенности:
+
+=begin nested
+The seven suspects are:
+
+=item  Happy
+=item  Dopey
+=item  Sleepy
+=item  Bashful
+=item  Sneezy
+=item  Grumpy
+=item  Keyser Soze
+=end nested
+
+
+Списки могут быть многоуровневыми. Каждый уровень указывается с помощью блоков C<=item1>, C<=item2>, C<=item3> и т.д. В этом смысле блок C<=item> является синонимом C<=item1>. Например:
+
+=begin code
+     =item1  Animal
+     =item2     Vertebrate
+     =item2     Invertebrate
+
+     =item1  Phase
+     =item2     Solid
+     =item2     Liquid
+     =item2     Gas
+     =item2     Chocolate
+=end code
+
+Результат следующий:
+
+=for para :nested
+E<bull> Animal
+=for para :nested(2)
+E<ndash> Vertebrate
+=for para :nested(2)
+E<ndash> Invertebrate
+
+=for para :nested
+E<bull> Phase
+=for para :nested(2)
+E<ndash> Solid
+=for para :nested(2)
+E<ndash> Liquid
+=for para :nested(2)
+E<ndash> Gas
+=for para :nested(2)
+E<ndash> Chocolate
+
+Обработчики Pod должны выдавать предупреждающее сообщение в случаях, когда разность между уровнями вложенности соседствующих блоков больше 1. Например, если за блоком C<=item1> следует блок C<=item3>.
+
+Блоки C<=item> не могут содержать вложенные списки. Это значит, что даже элементы с более низким уровнем вложенности I<не> могут присутствовать внутри C<=item> более высокого уровня.
+
+=begin code
+    =comment НЕВЕРНО...
+    =begin item1          --------------
+    The choices are:                    |
+    =item2 Liberty        ==< Level 2   |==<  Level 1
+    =item2 Death          ==< Level 2   |
+    =item2 Beer           ==< Level 2   |
+    =end item1            --------------
+=end code
+
+=begin code
+    =comment ПРАВИЛЬНО...
+    =begin item1          ---------------
+    The choices are:                     |==< Level 1
+    =end item1            ---------------
+    =item2 Liberty        ==================< Level 2
+    =item2 Death          ==================< Level 2
+    =item2 Beer           ==================< Level 2
+=end code
+
+
+=head2 Нумерованные списки
+
+Нумерованный список состоит из элементов, имеющих конфигурационный параметр C<:numbered>.
+
+=begin code
+     =for item1 :numbered
+     Visito
+
+     =for item2 :numbered
+     Veni
+
+     =for item2 :numbered
+     Vidi
+
+     =for item2 :numbered
+     Vici
+=end code
+
+Приведенный код преобразуется в следующего вида текст:
+
+=begin nested
+=para
+1. Visito
+
+=begin nested
+=para
+1.1. Veni
+
+=para
+1.2. Vidi
+
+=para
+1.3. Vici
+=end nested
+=end nested
+
+Схема нумерации целиком определяется средствами подготовки того или иного формата вывода. Поэтому возможен следующий вид нумерации:
+
+=begin nested
+=para
+1. Visito
+
+=begin nested
+=para
+1a. Veni
+
+=para
+1b. Vidi
+
+=para
+1c. Vici
+=end nested
+=end nested
+
+или даже :
+
+=begin nested
+A: Visito
+
+=begin nested  
+=para
+E<nbsp;nbsp>(i) Veni
+
+=para
+E<nbsp>(ii) Vidi
+
+=para
+(iii) Vici
+=end nested
+=end nested
+
+Эквивалентным свойству C<:numbered> в свойствах элемента, является указание C<#> первым символом
+в тексте элемента списка.
+
+=begin code
+     =item1  # Visito
+     =item2     # Veni
+     =item2     # Vidi
+     =item2     # Vici
+=end code
+
+В случаях, когда требуется использовать символ C<#> первым без интерпретации его как признака нумерованного списка, используется код форматирования C<V<>>:
+
+=begin code :allow<B>
+    =item B<V<#>> introduces a comment
+=end code
+
+или явное отрицание нумерации: 
+
+=begin code :allow<B>
+    =for item B<:!numbered>
+    # introduces a comment
+=end code
+
+Следующие друг за другом элементы первого уровня C<=item1> нумеруются последовательно. Их нумерация начинается заново, если их последовательность прерывается каким либо блоком Pod. В следующем примере, список прерывается параграфом:
+
+
+=begin code
+    The options are:
+
+    =item1 # Liberty
+    =item1 # Death
+    =item1 # Beer
+
+    The tools are:
+
+    =item1 # Revolution
+    =item1 # Deep-fried peanut butter sandwich
+    =item1 # Keg
+=end code
+
+Результат будет следующим:
+
+
+=begin nested
+The options are:
+=begin nested
+=para 1. Liberty
+=para 2. Death
+=para 3. Beer
+=end nested
+
+The tools are:
+
+=begin nested
+=para 1. Revolution
+=para 2. Deep-fried peanut butter sandwich
+=para 3. Keg
+=end nested
+=end nested
+
+Нумерация вложенных элементов ( C<=item2>, C<=item3>, C<=item4> ) сбрасывается каждый раз, когда встречается элемент более высокого уровня вложенности.
+
+Чтобы продолжить нумерацию C<=item1>, после разрыва списка блоком Pod, достаточно указать свойство C<:continued>:
+
+=begin code :allow<B>
+     =for item1
+     # Retreat to remote Himalayan monastery
+
+     =for item1
+     # Learn the hidden mysteries of space and time
+
+     I<????>
+
+     =for item1 B<:continued>
+     # Prophet!
+=end code
+
+Указанный код будет преобразован в следующий текст:
+
+=begin nested
+=para 1. Retreat to remote Himalayan monastery
+=para 2. Learn the hidden mysteries of space and time
+=para I<????>
+=para 3. Prophet!
+=end nested
+
+=head2 Маркированные списки
+
+Список элементов без указанного свойства C<:numbered> интерпретируется как маркированный I<(unordered)> список. Элементы таких списков отмечаются маркерами, так называемыми буллитами I<(bullit)>N<Маркер списка (буллит) - типографский знак, используемый для выделения элементов списка. L<Маркер списка|http://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D1%80%D0%BA%D0%B5%D1%80_%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B0> >.
+
+Так к примеру текст
+
+=begin code
+    =item1 Reading
+    =item2 Writing
+    =item3 'Rithmetic
+=end code
+
+может выглядеть следующим образом:
+
+=for para :nested(1)
+E<bull;nbsp;nbsp>Reading
+=for para :nested(2)
+E<mdash;nbsp;nbsp>Writing
+=for para :nested(3)
+E<curren;nbsp;nbsp>'Rithmetic
+
+Как и в случае нумерованных списков, стиль маркеров различных уровней вложенности возлагается на программу преобразования в формат вывода.
+
+
+=head2 Параграфы в элементах списков
+
+Чтобы в составе элемента списка использовать несколько параграфов, используется разграниченная I<(delimited)> форма блока C<=item>.
+
+=begin code
+     Let's consider two common proverbs:
+
+     =begin item :numbered
+     I<The rain in Spain falls mainly on the plain.>
+
+     This is a common myth and an unconscionable slur on the Spanish
+     people, the majority of whom are extremely attractive.
+     =end item
+
+     =begin item :numbered
+     I<The early bird gets the worm.>
+
+     In deciding whether to become an early riser, it is worth
+     considering whether you would actually enjoy annelids
+     for breakfast.
+     =end item
+
+     As you can see, folk wisdom is often of dubious value.
+=end code
+
+Результат будет следующий:
+
+=begin nested
+=config item :numbered
+Let's consider two common proverbs:
+
+=begin item
+I<The rain in Spain falls mainly on the plain.>
+
+This is a common myth and an unconscionable slur on the Spanish
+people, the majority of whom are extremely attractive.
+=end item
+
+=begin item
+I<The early bird gets the worm.>
+
+In deciding whether to become an early riser, it is worth
+considering whether you would actually enjoy annelids
+for breakfast.
+=end item
+
+As you can see, folk wisdom is often of dubious value.
+=end nested
+
+=head2 Списки определений
+
+Для создания списка определений используется блок C<=defn>. Данный блок идентичен блоку C<=item> в том, что серия последовательных блоков C<=defn> явно определяет список. Отличие заключается в том, что при преобразовании в HTML используются тэги C<< <DL>...</DL> >> вместо C<< <UL>...</UL> >>.
+
+Первая непустая строка содержимого блока интерпретируется как термин, а оставшееся содержимое - как определение термина.
+
+=begin code
+    =defn  MAD
+    Affected with a high degree of intellectual independence.
+
+    =defn  MEEKNESS
+    Uncommon patience in planning a revenge that is worth while.
+
+    =defn
+    MORAL
+    Conforming to a local and mutable standard of right.
+    Having the quality of general expediency.
+=end code
+
+Как и другие, элементы списков определений могут быть пронумерованы. Для этого используется свойство C<:numbered> или символ C<#> в начале строки:
+
+=begin code :allow<B>
+    =for defn B<:numbered>
+    SELFISH
+    Devoid of consideration for the selfishness of others.
+
+    =defn B<#> SUCCESS
+    The one unpardonable sin against one's fellows.
+=end code
+
+=end pod
+
+
+

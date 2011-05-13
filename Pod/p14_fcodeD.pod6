@@ -1,0 +1,23 @@
+=begin pod
+=head1 Код форматирования D - определения
+
+Код форматирования C<D<>> указывает, что содержащийся внутри текст является B<определением> термина. При этом окружающий текст разъясняет данный термин. Данный код представляется собой строковый эквивалент блока C<=defn>.
+Например: 
+
+=begin code :allow<B>
+    There ensued a terrible moment of B<D<coyotus interruptus>>: a brief
+    suspension of the effects of gravity, accompanied by a sudden
+    to-the-camera realisation of imminent downwards acceleration.
+=end code
+
+Определение может содержать синонимы. Они указываются после вертикальной черты  и отделены друг от друга точкой с запятой.
+
+=begin code :allow<B>
+    A B<D<formatting code|formatting codes;formatters>> provides a way
+    to add inline mark-up to a piece of text.
+=end code
+
+Определения обычно отображаются курсивом или отмечены тэгами C<< <dfn>...</dfn> >>. На определения часто ссылаются из других частей гипертекстовых документов, где встречаются указанные термины (или любые из соответствующих синонимов).
+
+=end pod
+

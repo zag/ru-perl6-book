@@ -1,0 +1,23 @@
+=begin pod
+=head1 Код форматирования S - текст с неразрывными пробелами
+
+Любой текст, заключенный в код C<S<>> форматируется как обычно,
+сохраняя при этом пробельные символы ( в том числе символ новой строки ). Эти символы
+интерпретируются как неразрывные пробелы ( кроме новой строки). Например:
+
+    The emergency signal is: S<
+    dot dot dot   dash dash dash   dot dot dot>.
+
+Будет отформатирован следующим образом:
+
+=nested
+The emergency signal is:E<NEL>
+dotE<nbsp>dotE<nbsp>dotE<nbsp>E<nbsp>E<nbsp>dashE<nbsp>dashE<nbsp>dashE<nbsp>E<nbsp>E<nbsp>E<nbsp>dotE<nbsp>dotE<nbsp>dot.
+
+вместо:
+
+=nested
+The emergency signal is: dot dot dot dash dash dash dot dot dot.
+
+=end pod
+

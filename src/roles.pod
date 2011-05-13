@@ -1,5 +1,5 @@
 =begin pod
-=NAME Roles
+=CHAPTER Roles
 
 X<|role>
 X<|roles>
