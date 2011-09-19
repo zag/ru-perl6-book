@@ -548,15 +548,6 @@ B<3.> Каким образом объект C<Task> может выполнит
 (Подумайте как можно избежать коллизий в "бриллиантовых зависимостях" I<(Пер. - не встречал ранее такого выражения.)>), когда две разных зависимых задачи требуют выполнения одной).
 B<Ответ:> Включение параллельного выполнения просто: достаточно заменить вызов метода C<.perform()> для C<@!dependencies;> на C<@!dependencies».perform()>. Однако в таком случае могут возникнуть "гонки" I(race conditions) в случае наличия бриллиантовых зависимостей, когда задача C<A> запускает одновременно C<B> и C<C>, а они в свою очередь запускают C<D> (C<D> запускается дважды). Решение этой проблемы такое же как и в случае с циклическими вызовами в вопросе 2  - ввести атрибут C<$!started>. Заметьте, что в случае параллельного выполнения, вызов die в одной из задач может прервать исполнение других.
 
-B<Answer:> Enabling parallelism is easy; change the line C<.perform() for
-@!dependencies;> into C<@!dependenciesб╩.perform()>. However, there may be race
-conditions in the case of diamond dependencies, wherein C<Task>s C<A> starts
-C<B> and C<C> in parallel, and both start a copy of C<D>, making C<D> run
-twice. The solution to this is the same as with the cycle-detection in Question
-2: introducing an attribute C<$!started>. Note that it's impolite to die if a
-C<Task> has started but not yet finished, because this time it might be due to
-parallelism rather than cycles:
-
 =begin code
 
     augment class Task {
