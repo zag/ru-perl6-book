@@ -50,7 +50,7 @@ May 27th 2010(v0.1)[zag]   Начальная версия
 =Include src/operators.pod
 =Include src/subs-n-sigs.pod
 
-=Include src/classes-and-objects.pod
+=Include src/classes-and-objects.pod6
 
 =Include src/multi-dispatch.pod
 =Include src/roles.pod
