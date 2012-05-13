@@ -11,8 +11,7 @@ convert a copy of both C<$a> and C<$b> to numbers (unless they are numbers
 already). This implicit conversion is called I<coercion>.
 
 Besides operators, other syntactic elements coerce their elements: C<if> and
-C<while> coerce to truth values (C<Bool>), C<for> views things as lists, and so
-on.
+C<while> coerce to truth values (C<Bool>), C<for> views things as lists, and so on.
 
 =head1 Numbers
 
@@ -79,7 +78,7 @@ The following operators are available for all number types:
 
 =begin table :caption('Binary numeric operators')
    Operator      Description
- ----------|--------------
+ ____________|________________
  C<**>          Exponentiation: C<$a**$b> is C<$a> to the power of C<$b>
  C<*>           multiplication
  C</>           division
@@ -90,7 +89,7 @@ The following operators are available for all number types:
 
 =begin table :caption('Unary numeric operators')
    Operator      Description
- ----------|--------------
+ _____________|________________
   C<+>        conversion to number
   C<->         negation
 =end table
@@ -100,7 +99,7 @@ you can write both C<(-5).abs> and C<abs(-5)>.
 
 =begin table :caption('Mathematical functions and methods')
     Method      Description
- ----------|--------------
+ ___________|_______________
  C<abs>      absolute value
  C<sqrt>     square root
  C<log>      natural logarithm
@@ -138,7 +137,7 @@ The following operations are available for strings:
 
 =begin table :caption('Binary string operators')
   Operator      Description
- ----------|--------------
+ ____________|______________
  C<~>        concatenation: C<'a' ~ 'b'> is C<'ab'>
  C<x>        replication: C<'a' x 2> is C<'aa'>
 =end table
@@ -146,13 +145,13 @@ The following operations are available for strings:
 
 =begin table :caption('Unary string operators')
   Operator      Description
- ----------|--------------
+ ____________|_______________
  C<~>           conversion to string: C<~1> becomes C<'1'>
 =end table
 
 =begin table :caption('String methods/functions')
 Method/function     Description
- ----------------------------|--------------
+ ________________|___________________
  C<.chomp>                      remove trailing newline
  C<.substr($start, $length)>    extract a part of the string. C<$length> defaults to the rest of the string
  C<.chars>                      number of characters in the string
@@ -173,17 +172,16 @@ A Boolean value is either C<True> or C<False>.  Any value can coerce to a
 boolean in boolean context. The rules for deciding if a value is true or false
 depend on the type of the value:
 
-=for item Strings
+=item Strings
 Empty strings and C<"0"> evaluate to C<False>.  All other strings evaluate to
 C<True>.
 
-=for item Numbers
+=item Numbers
 All numbers except zero evaluate to C<True>.
 
-=for item Lists and Hashes
+=item Lists and Hashes
 Container types such as lists and hashes evaluate to C<False> if they are
 empty, and to C<True> if they contain at least one value.
-
 
 Constructs such as C<if> automatically evaluate their conditions in
 boolean context. You can force an explicit boolean context by
@@ -205,3 +203,4 @@ the boolean value.
 
 =end code
 =end pod
+

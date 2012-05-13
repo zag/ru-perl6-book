@@ -163,12 +163,12 @@ implementation used to run this test actually executes the where-block twice.
 Keep in mind that the number of times the subtype checks blocks execute is
 specific to any particular implementation of Perl 6.
 
-=begin sidebar
+=begin comment :sidebar
 
 Avoid writing code like this in anything other than example code.  Relying on
 the side effects of type checks produces unreliable code.
 
-=end sidebar
+=end comment
 
 =head1 Narrowness
 
@@ -465,12 +465,12 @@ which prevents accidental overriding of built-insN<One of the very rare
 exceptions is the smart match operator C<< infix:<~~> >> which is not easily
 overloadable.  Instead it redispatches to overloadable multi methods.>.
 
-=begin sidebar
+=begin comment :sidebar
 
 To hide all candidates of a multi and replace them by another sub, declare it
 as C<only sub YourSub>.  At the time of writing, no compiler supports this.
 
-=end sidebar
+=end comment
 
 =head1 Toying with the candidate list
 

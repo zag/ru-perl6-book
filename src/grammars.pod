@@ -286,14 +286,14 @@ sets the C<ast> attribute of the current match object to C<$thing>.
 X<|abstract syntax tree>
 X<|AST>
 
-=begin sidebar
+=begin comment :sidebar
 
 An abstract syntax tree, or AST, is a data structure which represents the
 parsed version of the text.  Your grammar describes the structure of the AST:
 its root element is the C<TOP> node, which contain children of the allowed
 types and so on.
 
-=end sidebar
+=end comment
 
 In the case of the JSON parser, the payload is the data structure that the
 JSON string represents.  For each matching rule, the grammar engine calls an

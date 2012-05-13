@@ -1,31 +1,30 @@
 =begin pod
-=begin BOOKINFO
-*TITLE Все о Perl 6
-*SUBTITLE Справочное руководство
-*AUTHOR
+=TITLE Все о Perl 6
+=SUBTITLE Справочное руководство
+=AUTHOR
 firstname:Джонатан
 surname:Вортингтон
 
-*AUTHOR
+=AUTHOR
 firstname:Патрик
 surname:Мишо
 
-*AUTHOR
+=AUTHOR
 firstname: Карл
 surname:Мэсак
 
-*AUTHOR
+=AUTHOR
 firstname:Мориц
 surname:Ленц
 
-*AUTHOR
+=AUTHOR
 firstname:Скот
 lineage:Джонатан
 surname:Даф
 
-*DESCRIPTION
+=DESCRIPTION
 Данная книга является сборником статей о Perl 6.
-*CHANGES
+=CHANGES
 Sep 19th 2011(v0.7)[zag]   Классы и объекты
 
 May 13th 2011(v0.6)[zag]   Формат Pod
@@ -39,8 +38,6 @@ Sep 5th 2010(v0.3)[zag]   Базовый синтаксис
 Aug 18th 2010(v0.2)[zag]   Предисловие
 
 May 27th 2010(v0.1)[zag]   Начальная версия
-
-=end BOOKINFO
 
 =config C<> :allow<E>
 =config code :allow<E>
@@ -64,6 +61,5 @@ May 27th 2010(v0.1)[zag]   Начальная версия
 =comment
 Perl 6 Pod chapters from blog http://zag.ru
 =Include Pod/pod.pod6
-
 
 =end pod

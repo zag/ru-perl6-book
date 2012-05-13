@@ -219,7 +219,7 @@ will then disregard all of the (possibly conflicting) ones from the roles. Put
 simply, methods in the class always supersede methods which a role may provide.
 
 
-=begin sidebar
+=begin comment :sidebar
 
 What happens when a class performs a role but overrides all of its methods?
 That's okay too: declaring that a class performs a role does not require you to
@@ -228,7 +228,7 @@ of the role's requirements are satisfied once and only once, and from then on
 Perl's type system will consider all instances of the class as corresponding to
 the type implied by the role.
 
-=end sidebar
+=end comment
 
 =head2 Multi-methods and composition
 
