@@ -19,7 +19,7 @@
 
 =for table  :caption('Парная нотация конфигурации блоков Pod')
       значение      формат определения   также...   также ..(*)
-     ==============+===================+================+==============
+     ______________+____________________+_________+_____________
       Boolean(true)     :key             :key(1)            key=>1
       Boolean(false)    :!key            :key(0)            key=>0
       String            :key<str>        :key('str')        key=>'str'
@@ -34,13 +34,16 @@
 
 Синтаксис блока выглядит следующим образом:
 
+=begin code
   =begin BLOCK_TYPE  OPTIONAL CONFIG INFO
   =                  OPTIONAL EXTRA CONFIG INFO
   BLOCK CONTENTS
   =end BLOCK_TYPE
+=end code
 
 Например:
 
+=begin code
     =begin table  :caption<Table of Contents>
         Constants           1
         Variables           10
@@ -56,6 +59,7 @@
     =begin Contact  :optional
     The applicant's contact details
     =end Contact
+=end code
 
 Пустые строки между директивами, как это было в Perl5 POD не нужны; если они есть - то интерпретируются как часть содержимого блока. Кстати "пустыми" в Pod считаются также строки, содержащие только пробелы!
 
@@ -65,12 +69,15 @@
 
 Синтаксис этого типа блоков следующий:
 
+=begin code
     =for BLOCK_TYPE  OPTIONAL CONFIG INFO
     =                OPTIONAL EXTRA CONFIG INFO
     BLOCK DATA
+=end code
 
 Примеры:
 
+=begin code
     =for table  :caption<Table of Contents>
         Constants           1
         Variables           10
@@ -83,6 +90,7 @@
 
     =for Contact  :optional   
     The applicant's contact details
+=end code
 
 =head2 Сокращенные блоки / Abbreviated blocks
 
@@ -90,11 +98,14 @@
 
 Синтаксис блока следующий:
 
+=begin code
     =BLOCK_TYPE  BLOCK DATA
     MORE BLOCK DATA
+=end code
 
 Пример:
 
+=begin code
     =table
         Constants           1
         Variables           10
@@ -103,6 +114,7 @@
 
     =Name     The applicant's full name
     =Contact  The applicant's contact details
+=end code
 
 Этот тип блока подходит для случаев, когда можно обойтись без конфигурирования блока.
 Иначе придется воспользоваться I<=for> или I<=begin/=end> директивами.
@@ -126,6 +138,7 @@
 
 Практически это означает, что приведенные ниже блоки:
 
+=begin code
  =begin para
  Text
  =end para
@@ -133,6 +146,7 @@
  =for para text
 
  =para text
+=end code
 
 при конвертации в html будут преобразованы в один и тот же текст:
 
@@ -145,3 +159,4 @@
 3block_datapng.png
 
 =end pod
+

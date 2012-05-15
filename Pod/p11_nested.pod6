@@ -7,13 +7,16 @@
 
 Любой блок может быть вложенным I<(nested)>.  Для этого достаточно указать атрибут блока C<:nested>:
 
+=begin code
     =begin para :nested
         We are all of us in the gutter,
         but some of us are looking at the stars!
     =end para
+=end code
 
 Однако, указание атрибута вложенности для каждого блока быстро становится утомительным занятием, если таких блоков несколько или требуется несколько уровней вложенности:
 
+=begin code
     =begin para :nested
         We are all of us in the gutter,
         but some of us are looking at the stars!
@@ -21,9 +24,11 @@
     =begin para :nested(2)
             -- Oscar Wilde
     =end para
+=end code
 
 Формат Pod предоставляет блок C<=nested>, который означает, что все его содержимое должно быть вложенным:
 
+=begin code
     =begin nested
     We are all of us in the gutter,
     but some of us are looking at the stars!
@@ -31,9 +36,11 @@
         -- Oscar Wilde
         =end nested
     =end nested
+=end code
 
 Блоки вложенности C<=nested> могут содержать любое количество блоков, включая неявные параграфы и блоки кода. Следует отметить, что физические отступы блоков не играют роли при определении их уровня вложенности. Предидущий пример может быть переписан с учетом этого следующим образом:
 
+=begin code
     =begin nested
     We are all of us in the gutter,
     but some of us are looking at the stars!
@@ -41,9 +48,7 @@
     -- Oscar Wilde
     =end nested
     =end nested
-
+=end code
 
 =end pod
-
-
 

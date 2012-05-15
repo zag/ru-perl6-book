@@ -133,5 +133,3 @@ attribute. By default, handles are opened to the file "C<db.log>".
 
 =end pod
 
-
-

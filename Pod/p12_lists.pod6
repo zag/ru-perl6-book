@@ -354,5 +354,3 @@ As you can see, folk wisdom is often of dubious value.
 
 =end pod
 
-
-
