@@ -11,7 +11,7 @@ To build this book type the following:
 
 DEPENDENCIES
 
-For book creation it is necessary following software:
+For book creation it is necessary to have the following software:
     * docbook-4.5
     * fop-0.95
     * Perl6-Pod-0.22
@@ -24,12 +24,12 @@ NOTES FOR AUTHORS
  * Tables
 
 =for table :caption('Operators')
- Name     Describtion
+ Name     Description
  ------|----------
  test     My test
  qwe      qw4 qwe 
 
- * For code examples use ident:
+ * For code examples use indent:
   use v6;
   say "1";
 
@@ -53,7 +53,7 @@ or
 
 =end code
 
- *  Index entry
+ * Index entry
 
  X<|for> - without indexed text
 
